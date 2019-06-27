@@ -1,0 +1,17 @@
+# ignore target dir
+*target/
+target/
+*logs/
+.svn/
+*.iml
+*/.idea
+.idea
+*.swp
+*.DS_Store
+*.log
+*/node_modules
+*/.sass-cache
+nohup.out
+package-lock.json
+*.tar
+*.tar.gz
