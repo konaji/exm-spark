@@ -25,7 +25,6 @@ object MySQL2ES {
     properties.put("driver", "com.mysql.jdbc.Driver")
     val df: DataFrame = sparkSession.read.jdbc(url, table, properties)
     df.show()
-    df.as
     EsSparkSQL.saveToEs(df, "sino_person/sino_person")
     sparkSession.stop()
   }
