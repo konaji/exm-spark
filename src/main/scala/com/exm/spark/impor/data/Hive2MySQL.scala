@@ -45,13 +45,14 @@ object Hive2MySQL {
 //      .write.mode("append")
 //      .saveAsTable("hadoop10.data_block")
 
-
     //创建hive表
-    spark.sql("create table person (id int,name String) row format delimited fields terminated by ','")
+    spark.table("person1").createOrReplaceTempView("person1")
+    spark.sql("select * from person1").show()
+    //spark.sql("create table person (id int,name String) row format delimited fields terminated by ','")
     //加载表数据
-    spark.sql("load data local inpath './data/person.txt' into table person")
+    //spark.sql("load data local inpath './data/person.txt' into table person")
     //查询
-    spark.sql("select * from person").show()
+    //spark.sql("select * from person").show()
     //查询hive表的非默认库时，需要用库名.表名访问数据
     //spark.sql("select * from itcast.t1").show()
 
