@@ -1,6 +1,6 @@
 package com.exm.spark.impor.data
 
-import org.apache.spark.SparkConf
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
 object Hive2MySQL {
@@ -8,16 +8,13 @@ object Hive2MySQL {
   case class Blog(name: String, count: Int)
 
   def main(args: Array[String]) {
-    val conf = new SparkConf()
-      .setMaster("local[1]")
-      .setAppName("Hive2MySQL")
-
     val spark = SparkSession.builder()
-      .config(conf)
+      .appName("Hive2MySQL")
+      .master("local[2]")
       .enableHiveSupport()
       .getOrCreate()
-
-    val data = spark.sparkContext.makeRDD(List(("www", 10), ("iteblog", 20), ("com", 30)))
+    val sparkContext: SparkContext = spark.sparkContext
+    val data = sparkContext.makeRDD(List(("www", 10), ("iteblog", 20), ("com", 30)))
 
     import spark.implicits._
 
@@ -57,6 +54,8 @@ object Hive2MySQL {
     spark.sql("select * from person").show()
     //查询hive表的非默认库时，需要用库名.表名访问数据
     //spark.sql("select * from itcast.t1").show()
+
+    sparkContext.stop
   }
 
 
