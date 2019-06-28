@@ -11,7 +11,7 @@ object MySQL2ES {
     val sparkConf = new SparkConf().setAppName("MySQL2ES").setMaster("local[1]")
     sparkConf.set("es.nodes", "192.168.211.144")
     sparkConf.set("es.port", "9200")
-    sparkConf.set("es.index.auto.create", "true")
+    sparkConf.set("es.index.auto.create", "true")  //自动创建ES
     sparkConf.set("es.write.operation", "index")
     //es.write.operation : 写入模式
     //https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
