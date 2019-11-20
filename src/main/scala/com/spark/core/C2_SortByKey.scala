@@ -10,7 +10,7 @@ object C2_SortByKey {
     val rdd = sparkContext.textFile("./data/core/sort.txt")
     val map: RDD[String] = rdd.map(line => {
       println("line=" + line)
-      line
+      line 
     })
     map.foreach(println(_))
     println("=======================================")
